@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "es2019"],
+    "module": "CommonJS",
+    "noEmitOnError": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "outDir": "lib",
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "stripInternal": true,
+    "target": "ES2019"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules/**/*", "./dist/**/*"],
+  "linterOptions": {
+    "exclude": ["config/**/*", "node_modules/**/*"]
+  },
+  "defaultSeverity": "warning",
+  "// 01": "compilerOptions > \"noUnusedLocals\": true,",
+  "// 02": "compilerOptions > \"noUnusedParameters\": true,"
+}
