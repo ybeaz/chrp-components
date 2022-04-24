@@ -1,49 +1,44 @@
 import React, { useRef } from 'react'
-import { useSelector } from 'react-redux'
 
-import { handleEvents } from '../../DataLayer/index.handleEvents'
-import { IRootStore } from '../../Interfaces/IRootStore'
-import { IconReact } from './IconReact'
+import { default as IconReact } from '../IconReact'
 
-interface InputArgs {
+export interface IInputProps {
+  Icon?: any // generic react icon from https://react-icons.github.io/react-icons/
+  Icon2?: any // generic react icon from https://react-icons.github.io/react-icons/
   tagName?: string // input tag, may be 'input' or 'textarea'
   classAdded: string // class to add to customize the standard input class
   type?: string // type of html tag, for example, <input type='text' >
   placeholder: string // placeholder text
   typeEvent: string // typeEvent to trigger the proper action
-  storeFormGroup?: string // sub property in store.form to keep data
-  storeFormProp?: string // name of the property in store.form that stores data
+  handleEvents: Function // function that accepts action
+  value?: string | number // value, that fills attribute value of <input ...> tag
   accept?: string // accepted files' format for type='file', for example, 'image/png, image/jpeg, image/jpg'
 }
 
-export const Input: React.FunctionComponent<InputArgs> = (
-  props: InputArgs
-): React.ReactElement => {
+export interface IInput extends React.FunctionComponent<IInputProps> {
+  (props: IInputProps): React.ReactElement
+}
+
+const Input: IInput = props => {
   const {
+    Icon, // ICONS['AiFillCloseCircle'],
+    Icon2,
     tagName = 'input',
     classAdded,
     type,
     placeholder,
+    handleEvents,
     typeEvent,
-    storeFormGroup,
-    storeFormProp,
+    value,
     accept,
   } = props
-
-  const store = useSelector((store2: IRootStore) => store2)
-  const { forms } = store
-  let value =
-    storeFormGroup && storeFormProp
-      ? forms[storeFormGroup][storeFormProp]
-      : storeFormProp && forms[storeFormProp]
-  value = value === null ? '' : value
 
   const action = { typeEvent }
 
   const iconReactProps = {
-    icon: 'AiFillCloseCircle',
-    icon2: 'null',
-    classAdded: 'IconReact_Input',
+    Icon,
+    Icon2,
+    classAdded: `IconReact_Input ${classAdded}`,
   }
 
   const inputFileRef = useRef(null)
@@ -57,10 +52,10 @@ export const Input: React.FunctionComponent<InputArgs> = (
 
   return (
     <div className={`Input ${classAdded}`}>
-      <div className='__form'>
+      <div className='_form'>
         {tagName === 'input' && (
           <input
-            className={'__input _hidden'}
+            className={'_input _hidden'}
             ref={inputFileRef}
             type={type}
             placeholder={placeholder}
@@ -73,7 +68,7 @@ export const Input: React.FunctionComponent<InputArgs> = (
         )}
         {tagName === 'textarea' && (
           <textarea
-            className={'__input'}
+            className={'_input'}
             placeholder={placeholder}
             onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
               handleEvents(event, action)
@@ -82,14 +77,16 @@ export const Input: React.FunctionComponent<InputArgs> = (
           />
         )}
       </div>
-      <span
+      <div
         className='_iconClose'
         onClick={(_event: React.MouseEvent<HTMLSpanElement>) =>
           handleEvents({ target: { value: '' } }, action)
         }
       >
         <IconReact {...iconReactProps} />
-      </span>
+      </div>
     </div>
   )
 }
+
+export default Input

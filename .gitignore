@@ -5,16 +5,12 @@
 
 # Node artifact files
 node_modules/
-!package-lock.json
-!yarn.lock
+package-lock.json
+yarn.lock
 .awcache/
 .temp_cache/
-dist/bundle.min.js
-dist/bundle.min.js.LICENSE.txt
-dist/bundle.min.js.map
-dist/index.html
-build/stats.json
-build/duplicates-*
+
+
 
 # Compiled Java class files
 *.class
@@ -30,7 +26,6 @@ build/duplicates-*
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
