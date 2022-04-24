@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Inter|Pinyon+Script|Rochester|Roboto|Noto|sans+serif');
+* {
+  box-sizing: border-box;
+}
+html {
+  text-size-adjust: 100%;
+  font-size: 1.05rem;
+  height: 100%;
+  width: 100%;
+}
+body {
+  padding: 0;
+  font-family: Inter, Roboto, Noto, sans-serif;
+  overflow-x: hidden;
+  background-color: #fff;
+  color: #141414;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background-clip: content-box;
+  margin: 0;
+  -webkit-print-color-adjust: exact;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Roboto, Noto, sans-serif;
+  font-stretch: normal;
+}
+h4 {
+  font-size: 1.1rem;
+  line-height: 27px;
+}
+#root {
+  width: inherit;
+  flex: 1;
+}
+.Button {
+  display: flex;
+  position: relative;
+}
+.Button ._tooltipTop {
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.Button ._tooltipRight {
+  top: -5px;
+  left: 105%;
+}
+.Button ._tooltipBottom {
+  width: 120px;
+  top: 110%;
+  left: 50%;
+  margin-left: -60px;
+}
+.Button ._tooltipLeft {
+  width: 120px;
+  top: -5px;
+  right: 105%;
+}
+.Button ._tooltipText {
+  visibility: hidden;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.Button ._tooltipTextVisible {
+  visibility: visible;
+}
+.Button:hover ._tooltipText {
+  visibility: visible;
+}
+.Button ._button {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.Button ._button:active,
+.Button ._button:focus {
+  outline: none;
+  text-size-adjust: 100%;
+}
+.Button ._button ._in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.Button ._button ._in ._capture_left {
+  padding: 0 0.3rem 0 0;
+  line-height: 1.1;
+}
+.Button ._button ._in ._icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.Button ._button ._in ._capture_right {
+  padding: 0 0 0 0.3rem;
+  line-height: 1.1;
+}
+.Button ._underlined {
+  display: flex;
+  width: 95%;
+}
+.Button_none {
+  display: none;
+}
+.IconReact ._in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.IconReact ._in ._capture_left {
+  padding: 0 0.3rem 0 0;
+}
+.IconReact ._in ._icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.Image {
+  display: flex;
+}
+.Image ._image {
+  vertical-align: middle;
+  border-style: none;
+}
+.Input {
+  display: flex;
+  position: relative;
+  width: -webkit-fill-available;
+}
+.Input ._form {
+  display: flex;
+  width: 100%;
+}
+.Input ._form ._input {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 0 0;
+  padding: 2px 0.7rem 2px 0.7rem;
+  text-size-adjust: 100%;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 24px;
+  letter-spacing: -0.3px;
+  direction: ltr;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-appearance: none;
+  background-clip: border-box;
+  cursor: text;
+}
+.Input ._form ._input:active,
+.Input ._form ._input:focus {
+  border-radius: 0px;
+  outline: none;
+  text-size-adjust: 100%;
+}
+.Input ._hidden {
+  display: none;
+}
+.Input ._iconClose {
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  z-index: 1;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-top: -12px;
+  margin-right: 9px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: color 0.3s ease, opacity 0.15s ease;
+  text-rendering: auto;
+}
+.Input:hover ._iconClose {
+  opacity: 1;
+}
+.LoaderOverlay {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  /* Safari */
+}
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.LoaderOverlay ._spinner::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 0.5rem #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: '';
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+.LoaderOverlay_show {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+@supports (
+    (-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))
+  ) {
+  .LoaderOverlay_show {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0.33rem);
+    transition: backdrop-filter 5s;
+    -webkit-backdrop-filter: blur(0.33rem);
+  }
+}
