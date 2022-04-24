@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
-import { IAction } from '../../Interfaces/IAction'
-import { Image } from './Image'
-import { IconReact } from './IconReact'
-import { handleEvents } from '../../DataLayer/index.handleEvents'
-export interface IButtonArgs {
-  icon?: string // react name for the first icon inside the button
-  icon2?: string // react name for the second icon to exchange first one
+import { IAction } from '../../interfaces/IAction'
+import { default as Image } from '../Image'
+import { default as IconReact } from '../IconReact'
+
+export interface IButtonProps {
+  Icon?: any // generic react icon from https://react-icons.github.io/react-icons/
+  Icon2?: any // generic react icon from https://react-icons.github.io/react-icons/
   imageSrc?: string // image source for the image inside the button
-  captureLeft?: string | ReactElement // capture on the left of the icon/ image
+  captureLeft?: string | React.ReactElement // capture on the left of the icon/ image
   captureRight?: string // capture on the right of the icon/ button
   classAdded: string // calss added to the button, to make it css unique
   action?: IAction // action to assign the button
@@ -17,21 +17,17 @@ export interface IButtonArgs {
   tooltipPosition?: string // options: ['top','right','bottom','left']
   isTooltipVisibleForced?: boolean // is tooltips visible, to manage it
   isUnderlined?: boolean // is the button underlined to highlight on of the buttons
-  handleEvents?: Function // to pass handleEvents custom functioon instead of the action
+  handleEvents: Function // to pass handleEvents custom functioon instead of the action
 }
 
-export const ButtonTest: React.FunctionComponent<IButtonArgs> = (
-  props: IButtonArgs
-): ReactElement => {
-  return <div className='Button'>Button</div>
+export interface IButton extends React.FunctionComponent<IButtonProps> {
+  (props: IButtonProps): React.ReactElement
 }
 
-export const Button: React.FunctionComponent<IButtonArgs> = (
-  props: IButtonArgs
-): React.ReactElement => {
+const Button: IButton = props => {
   const {
-    icon = undefined,
-    icon2 = undefined,
+    Icon = undefined,
+    Icon2 = undefined,
     imageSrc = undefined,
     captureLeft,
     captureRight,
@@ -42,13 +38,10 @@ export const Button: React.FunctionComponent<IButtonArgs> = (
     tooltipPosition = 'top',
     isTooltipVisibleForced = false,
     isUnderlined = false,
-    handleEvents: handleEventsCustom,
+    handleEvents,
   } = props
 
   const classDisplay = isDisplaying === true ? '' : 'Button_none'
-  const handleEventsToUse = handleEventsCustom
-    ? handleEventsCustom
-    : handleEvents
 
   const classTooltipsDictionary: Record<string, string> = {
     top: '_tooltipTop',
@@ -60,13 +53,13 @@ export const Button: React.FunctionComponent<IButtonArgs> = (
   let classTooltipAdd: any = classTooltipsDictionary[tooltipPosition]
 
   classTooltipAdd = isTooltipVisibleForced
-    ? `${classTooltipAdd} __tooltipTextVisible`
+    ? `${classTooltipAdd} _tooltipTextVisible`
     : classTooltipAdd
 
   const propsOut = {
     iconReactProps: {
-      icon,
-      icon2,
+      Icon,
+      Icon2,
       classAdded: `_in IconReact_${classAdded}`,
     },
     imageProps: {
@@ -78,16 +71,14 @@ export const Button: React.FunctionComponent<IButtonArgs> = (
   return (
     <div className={`Button ${classAdded} ${classDisplay}`}>
       {tooltipText ? (
-        <span className={`__tooltipText ${classTooltipAdd}`}>
-          {tooltipText}
-        </span>
+        <span className={`_tooltipText ${classTooltipAdd}`}>{tooltipText}</span>
       ) : null}
 
       <button
-        className={`__button`}
+        className={`_button`}
         type='button'
         onClickCapture={(event: React.MouseEvent<HTMLButtonElement>) =>
-          handleEventsToUse(event, action)
+          handleEvents(event, action)
         }
       >
         {captureLeft ? (
@@ -95,7 +86,7 @@ export const Button: React.FunctionComponent<IButtonArgs> = (
             <div className={`_capture_left`}>{captureLeft}</div>
           </div>
         ) : null}
-        {icon || icon2 ? <IconReact {...propsOut.iconReactProps} /> : null}
+        {Icon || Icon2 ? <IconReact {...propsOut.iconReactProps} /> : null}
         {imageSrc && <Image {...propsOut.imageProps} />}
         {captureRight ? (
           <div className='_in'>
@@ -103,7 +94,9 @@ export const Button: React.FunctionComponent<IButtonArgs> = (
           </div>
         ) : null}
       </button>
-      {isUnderlined && <hr className='__underlined' />}
+      {isUnderlined && <hr className='_underlined' />}
     </div>
   )
 }
+
+export default Button

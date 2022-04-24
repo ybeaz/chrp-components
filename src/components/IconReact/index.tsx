@@ -1,21 +1,18 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { IconContext } from 'react-icons'
 
-import { ICONS } from '../../Constants/icons.const'
-
-interface IconReactArgs {
+export interface IIconReactProps {
   classAdded: string
-  icon?: string
-  icon2?: string
+  Icon?: any // generic react icon from https://react-icons.github.io/react-icons/
+  Icon2?: any // generic react icon from https://react-icons.github.io/react-icons/
 }
 
-export const IconReact: React.FunctionComponent<IconReactArgs> = (
-  props: IconReactArgs
-): ReactElement => {
-  const { icon = '', icon2 = '', classAdded } = props
+export interface IIconReact extends React.FunctionComponent<IIconReactProps> {
+  (props: IIconReactProps): React.ReactElement
+}
 
-  const Icon: any = ICONS[icon]
-  const Icon2: any = ICONS[icon2]
+const IconReact: IIconReact = props => {
+  const { Icon, Icon2, classAdded } = props
 
   return (
     <>
@@ -42,3 +39,5 @@ export const IconReact: React.FunctionComponent<IconReactArgs> = (
     </>
   )
 }
+
+export default IconReact

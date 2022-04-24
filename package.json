@@ -1,0 +1,50 @@
+{
+  "name": "userto-components",
+  "version": "0.0.24",
+  "description": "An custom-developer-class UI React components implementation",
+  "title": "Userto Design",
+  "keywords": [
+    "userto",
+    "component",
+    "components",
+    "design",
+    "framework",
+    "frontend",
+    "react",
+    "react-component",
+    "ui"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "unpkg": "dist/lib.min.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "buildCssClean": "npx lessc --clean-css='--s1 --advanced --compatibility=ie8' src/index.less ./lib/index.css",
+    "buildCss": "npx lessc src/index.less ./lib/index.css",
+    "buildTs": "tsc",
+    "build": "yarn buildCss && yarn buildTs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybeaz/userto-components.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ybeaz/userto-components/issues"
+  },
+  "homepage": "https://github.com/ybeaz/userto-components#readme",
+  "dependencies": {
+    "@types/react": "^17.0.2",
+    "less": "^4.1.2",
+    "less-plugin-clean-css": "^1.5.1",
+    "lessc-each": "^1.1.0",
+    "react": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "typescript": "^4.6.3"
+  }
+}
