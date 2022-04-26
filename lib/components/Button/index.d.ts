@@ -1,19 +1,17 @@
 import React from 'react';
-import { IAction } from '../../interfaces/IAction';
 export interface IButtonProps {
     Icon?: any;
     Icon2?: any;
     imageSrc?: string;
     captureLeft?: string | React.ReactElement;
     captureRight?: string;
-    classAdded: string;
-    action?: IAction;
+    className: string;
     isDisplaying?: boolean;
     tooltipText?: string;
     tooltipPosition?: string;
     isTooltipVisibleForced?: boolean;
     isUnderlined?: boolean;
-    handleEvents: Function;
+    onClick: React.MouseEventHandler | undefined;
 }
 export interface IButton extends React.FunctionComponent<IButtonProps> {
     (props: IButtonProps): React.ReactElement;

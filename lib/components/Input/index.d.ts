@@ -1,15 +1,12 @@
 import React from 'react';
 export interface IInputProps {
-    Icon?: any;
-    Icon2?: any;
     tagName?: string;
-    classAdded: string;
+    className: string;
     type?: string;
     placeholder: string;
-    typeEvent: string;
-    handleEvents: Function;
     value?: string | number;
     accept?: string;
+    onChange: React.ChangeEventHandler | undefined;
 }
 export interface IInput extends React.FunctionComponent<IInputProps> {
     (props: IInputProps): React.ReactElement;

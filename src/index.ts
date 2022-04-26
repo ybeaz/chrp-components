@@ -1,6 +1,3 @@
-export { default as Button2 } from './components/Button2'
-export { IButton2, IButton2Props } from './components/Button2/index'
-
 export { default as Button } from './components/Button'
 export { IButton, IButtonProps } from './components/Button/index'
 

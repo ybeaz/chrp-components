@@ -1,6 +1,6 @@
 import React from 'react';
 export interface IIconReactProps {
-    classAdded: string;
+    className: string;
     Icon?: any;
     Icon2?: any;
 }

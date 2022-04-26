@@ -1,10 +1,9 @@
 import React from 'react';
-import { IAction } from '../../interfaces/IAction';
 export interface IImageProps {
-    classAdded: string;
+    className: string;
     src: string | undefined;
-    action?: IAction;
-    handleEvents?: Function;
+    isClassCursor?: boolean;
+    onClick?: React.MouseEventHandler;
 }
 export interface IImage extends React.FunctionComponent<IImageProps> {
     (props: IImageProps): React.ReactElement;

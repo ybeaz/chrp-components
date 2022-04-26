@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { IAction } from '../../interfaces/IAction'
-
 export interface IImageProps {
-  classAdded: string
+  className: string
   src: string | undefined
-  action?: IAction
-  handleEvents?: Function
+  isClassCursor?: boolean
+  onClick?: React.MouseEventHandler
 }
 
 export interface IImage extends React.FunctionComponent<IImageProps> {
@@ -14,18 +12,12 @@ export interface IImage extends React.FunctionComponent<IImageProps> {
 }
 
 const Image: IImage = props => {
-  const { classAdded, src, handleEvents = () => ({}), action } = props
+  const { className, src, onClick, isClassCursor = false } = props
 
-  const handleEventsToUse = action ? handleEvents : () => ({})
-  const classCursor = action ? '_cursor' : ''
+  const classCursor = isClassCursor ? '_cursor' : ''
 
   return (
-    <div
-      className={`Image ${classAdded}`}
-      onClickCapture={(event: React.MouseEvent<HTMLDivElement>) =>
-        handleEventsToUse(event, action)
-      }
-    >
+    <div className={`Image ${className}`} onClickCapture={onClick}>
       <img className={`_image ${classCursor}`} src={src} />
     </div>
   )

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { IAction } from '../../interfaces/IAction'
 import { default as Image } from '../Image'
 import { default as IconReact } from '../IconReact'
 
@@ -10,14 +9,13 @@ export interface IButtonProps {
   imageSrc?: string // image source for the image inside the button
   captureLeft?: string | React.ReactElement // capture on the left of the icon/ image
   captureRight?: string // capture on the right of the icon/ button
-  classAdded: string // calss added to the button, to make it css unique
-  action?: IAction // action to assign the button
+  className: string // calss added to the button, to make it css unique
   isDisplaying?: boolean // is the button displaing at all
   tooltipText?: string // tooltips text for the button to provide user with a promt
   tooltipPosition?: string // options: ['top','right','bottom','left']
   isTooltipVisibleForced?: boolean // is tooltips visible, to manage it
   isUnderlined?: boolean // is the button underlined to highlight on of the buttons
-  handleEvents: Function // to pass handleEvents custom functioon instead of the action
+  onClick: React.MouseEventHandler | undefined
 }
 
 export interface IButton extends React.FunctionComponent<IButtonProps> {
@@ -31,14 +29,13 @@ const Button: IButton = props => {
     imageSrc = undefined,
     captureLeft,
     captureRight,
-    classAdded = '',
-    action = {},
+    className = '',
     isDisplaying = true,
     tooltipText = '',
     tooltipPosition = 'top',
     isTooltipVisibleForced = false,
     isUnderlined = false,
-    handleEvents,
+    onClick,
   } = props
 
   const classDisplay = isDisplaying === true ? '' : 'Button_none'
@@ -60,27 +57,21 @@ const Button: IButton = props => {
     iconReactProps: {
       Icon,
       Icon2,
-      classAdded: `_in IconReact_${classAdded}`,
+      className: `_in IconReact_${className}`,
     },
     imageProps: {
-      classAdded: `_in Image_${classAdded}`,
+      className: `_in Image_${className}`,
       src: imageSrc,
     },
   }
 
   return (
-    <div className={`Button ${classAdded} ${classDisplay}`}>
+    <div className={`Button ${className} ${classDisplay}`}>
       {tooltipText ? (
         <span className={`_tooltipText ${classTooltipAdd}`}>{tooltipText}</span>
       ) : null}
 
-      <button
-        className={`_button`}
-        type='button'
-        onClickCapture={(event: React.MouseEvent<HTMLButtonElement>) =>
-          handleEvents(event, action)
-        }
-      >
+      <button className={`_button`} type='button' onClickCapture={onClick}>
         {captureLeft ? (
           <div className='_in'>
             <div className={`_capture_left`}>{captureLeft}</div>
