@@ -2,7 +2,7 @@ import React from 'react'
 
 export interface IImageProps {
   className: string
-  src: string | undefined
+  src?: string
   isClassCursor?: boolean
   onClick?: React.MouseEventHandler
 }
@@ -18,7 +18,7 @@ const Image: IImage = props => {
 
   return (
     <div className={`Image ${className}`} onClickCapture={onClick}>
-      <img className={`_image ${classCursor}`} src={src} />
+      <img className={`_image ${classCursor}`} src={src || ''} />
     </div>
   )
 }
